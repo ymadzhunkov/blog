@@ -1,0 +1,12 @@
+find_package(Git)
+if(GIT_FOUND)
+    configure_file(${CMAKE_SOURCE_DIR}/version.cmake.in ${CMAKE_BINARY_DIR}/version.cmake @ONLY)
+    # Generate initial version of version.cpp
+    include(${CMAKE_BINARY_DIR}/version.cmake)
+    add_custom_target(version ${CMAKE_COMMAND} -P ${CMAKE_BINARY_DIR}/version.cmake)
+    include_directories(.)
+    add_executable(main main.cpp ${CMAKE_BINARY_DIR}/version.cpp)
+    add_dependencies(main version)
+else()
+    message(FATAL_ERROR "Can't find git on this system")
+endif()
