@@ -1,8 +1,0 @@
-#include "version.h"
-Version::Version()
-    : git_sha1("@GIT_SHA1@")
-    , git_description("@GIT_DESCRIPTION@") 
-    , package("@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@")
-    , build_type("@BUILD_TYPE@")
-    {}
-
