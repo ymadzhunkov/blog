@@ -19,14 +19,14 @@ minimalistic example which fulfils:
 4. Git sha1 hash is embedded in each build
 
 ```console
-$ ./program --version
+$ ./main --version
 version 0.1.3
 git sha = 8ef01d3fbcde1ef46305f784a9cbe543e854a53e
 git decription = v0.1-3-g8ef01d3
 ```
 After 2 commits and some upstaged changes
 ```
-$ ./program --version
+$ ./main --version
 package 0.1.5-dirty
 git sha = 23b104b091e418b62fde9db580d7d458713f9c64-dirty
 git decription = v0.1-5-g23b104b-dirty
@@ -139,4 +139,33 @@ else()
 endif()
 ```
 
+Bellow is demo that shows that you version automatically changes, when you add new tag to git.
 
+```console
+$ make
+[  0%] Built target version
+Scanning dependencies of target main
+[ 50%] Building CXX object CMakeFiles/main.dir/main.o
+[100%] Building CXX object CMakeFiles/main.dir/version.o
+Linking CXX executable main
+[100%] Built target main
+
+$ ./main 
+package 0.1.6
+git sha = 6aaae267cfe55a0b0d5c625b5584e3f3049879dd
+git decription = v0.1-6-g6aaae26
+
+$ git tag -a v0.2 -m "my version 0.2"
+
+$ make
+[  0%] Built target version
+Scanning dependencies of target main
+[ 50%] Building CXX object CMakeFiles/main.dir/version.o
+Linking CXX executable main
+[100%] Built target main
+
+$ ./main 
+package 0.2.
+git sha = 6aaae267cfe55a0b0d5c625b5584e3f3049879dd
+git decription = v0.2
+```
