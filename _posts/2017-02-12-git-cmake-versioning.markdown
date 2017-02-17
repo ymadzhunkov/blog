@@ -54,7 +54,6 @@ int main(int argc, char **argv) {
 version.h
 ```cpp
 #pragma once
-#include <string>
 class Version {
 public:
     Version();
@@ -140,7 +139,7 @@ else()
 endif()
 ```
 
-Bellow is demo that shows that you version automatically changes, when you add new tag to git.
+Bellow is a demo that shows that you version automatically changes when you add a new tag to git.
 
 ```console
 $ make
