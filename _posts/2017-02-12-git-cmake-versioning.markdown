@@ -25,7 +25,7 @@ git sha = 8ef01d3fbcde1ef46305f784a9cbe543e854a53e
 git decription = v0.1-3-g8ef01d3
 ```
 After 2 commits and some upstaged changes
-```
+```console
 $ ./main --version
 package 0.1.5-dirty
 git sha = 23b104b091e418b62fde9db580d7d458713f9c64-dirty
