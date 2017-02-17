@@ -79,7 +79,7 @@ Version::Version()
 ```
 
 CMake is a cross-platform build system generator. It is responsible for writing
-the input files for a native build system. The native build sustem is the one
+the input files for a native build system. The native build system is the one
 who builds our code, not CMake. On GNU/Linux the native build system can be make
 or ninja. On Windows it can be Visual Studio or ninja. The native build system
 needs to obtain information from git and generate version.cpp. This happens by
@@ -139,7 +139,7 @@ else()
 endif()
 ```
 
-Bellow is a demo that shows that you version automatically changes when you add a new tag to git.
+A demo showing that version automatically changes when I add a new tag to git.
 
 ```console
 $ make
