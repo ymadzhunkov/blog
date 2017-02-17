@@ -5,13 +5,13 @@ date:   2017-02-12 09:06:48 +0200
 categories: cmake git
 excerpt_separator: <!--more-->
 ---
-It's useful to embed build information in your program. It helps you to
-determine, which version of the product your users are using.  This is very
-important when the users report defects in your code, when you build and ship
-frequently, when you have continuous integration and so on.  Git provides
-reliable versioning information about our code. We just need to embed this
-information in our product. Bellow is how to do it using CMake. I will show a
-minimalistic example which fulfils:
+It's useful to embed build information in your program. It helps your users
+determine which version of the product they are using.  This is very important
+when the users report defects in your code, when you build and ship frequently,
+when you have continuous integration and so on.  Git provides reliable
+versioning information about our code. We just need to embed this information
+in our product. Bellow is how to do it using CMake. I will show a minimalistic
+example which fulfils:
 
 1. Major and minor version are computed from git tags 
 2. Patch version automatically increases with each commit
@@ -66,7 +66,7 @@ public:
 At compile time the build system collects version information by invoking git.
 Using this information the build system generates version.cpp. This file is then compiled and
 linked into our main program. In case the content of version.cpp does not
-change, recompilation will not occur. Bellow is template from which CMake
+change, recompilation will not occur. Bellow is a template from which CMake
 generates the version.cpp
 
 version.cpp.in
@@ -80,13 +80,14 @@ Version::Version()
 ```
 
 CMake is a cross-platform build system generator. It is responsible for writing
-the input files for a native build system. Native build system builds our code
-not CMake. On GNU/Linux native build system can be make or ninja. On Windows it
-can be Visual Studio or ninja. The native build system needs to obtain
-information from git and generate version.cpp. This happens by the following mechanism:
-native build script invokes a small CMake script version.cmake. The only reason
-this file is generated from template is to remember, where to original source
-directory is located. There other ways you can achieve this, but I prefer this one. 
+the input files for a native build system. The native build sustem is the one
+who builds our code, not CMake. On GNU/Linux the native build system can be make
+or ninja. On Windows it can be Visual Studio or ninja. The native build system
+needs to obtain information from git and generate version.cpp. This happens by
+the following mechanism: the native build script invokes a small CMake script - 
+version.cmake. The only reason this file is generated from a template is to
+memorize, where to original source directory is located. There are other ways you
+can achieve this, but I prefer this one. 
 
 In version.cmake.in
 ```cmake
