@@ -103,3 +103,12 @@ if(REPORT_COVERAGE)
 
 
 endif(REPORT_COVERAGE)
+```
+
+ZeroCoverageCounters.cmake
+```cmake
+file(GLOB_RECURSE GCDA_FILES "${PROJECT_BINARY_DIR}/*.gcda")
+if(NOT GCDA_FILES STREQUAL "")
+  file(REMOVE ${GCDA_FILES})
+endif()
+```
