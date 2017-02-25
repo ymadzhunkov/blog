@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Welcome to my blog ...
+comments: false
 permalink: /
 ---
 {% for post in site.posts limit : 5 %}

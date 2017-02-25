@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title:  "How to embed build information from git to your program using CMake"
 date:   2017-02-12 09:06:48 +0200
 categories: cmake git

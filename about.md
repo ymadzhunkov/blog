@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+comments: false
 permalink: about/
 ---
 I am Yordan Madzhunkov, the person behind this blog. I live in Sofia,
