@@ -1,10 +1,31 @@
 ---
 layout: post
-title:  "How to generate coverage reports using CMake/gcov"
+title:  "How to measure code coverage with CMake/gcov"
 date:   2017-02-25 09:06:48 +0200
 categories: cmake coverage
 excerpt_separator: <!--more-->
 ---
+**Motivation**
+
+Developers often ignore a piece of code that has never been tested, unless it's
+highlighted in red. Most of us don't even know how to measure code coverage by
+tests or we don't like to admit that our code is not tested properly.
+Measuring code coverage makes a great difference in the way we perceive code.
+It is also a great tool to seek and destroy dead code. Dead code can be fatal
+for a company. Read the story of Knight Capital Group, a company with nearly
+$400 million in assets. The company went bankrupt in 45-minutes because of a
+deployment that activated 8 year old dead code.
+ <!--more-->
+
+**What is code coverage**
+
+**What is unit test**
+
+**What is integration test**
+
+
+
+
 Global option to control coverage report
 ```cmake
 option(REPORT_COVERAGE            "Generate coverage report" OFF)
@@ -27,17 +48,6 @@ endif(REPORT_COVERAGE)
 
 Adding unit tests
 ```cmake
-macro(add_unit_test_target)
-    cmake_parse_arguments(ARG "" "TARGET" "" ${ARGN})
-    set(UNIT_TEST_TARGET ${ARG_TARGET})
-
-    #Run unit test as part of build
-    add_custom_command(TARGET ${UNIT_TEST_TARGET} POST_BUILD COMMAND $<TARGET_FILE:${UNIT_TEST_TARGET}>)
-
-    #Register unit test in ctests
-    add_test(NAME unittest_${UNIT_TEST_TARGET} COMMAND $<TARGET_FILE:${UNIT_TEST_TARGET}>)
-endmacro()
-
 
 macro(add_doctest_test)
     cmake_parse_arguments(ARG "" "NAME" "SOURCES;TEST_SOURCES;LIBRARIES" ${ARGN})
@@ -47,10 +57,16 @@ macro(add_doctest_test)
     set(UNIT_TEST_TARGET ${ARG_NAME})
     add_executable(${UNIT_TEST_TARGET} ${ARG_SOURCES} ${ARG_TEST_SOURCES} ${DOCTEST_MAIN})
     target_include_directories(${UNIT_TEST_TARGET} PUBLIC ${DOCTEST_INCLUDE})
-    add_unit_test_target(TARGET ${UNIT_TEST_TARGET})
+
     if (NOT "${ARG_LIBRARIES}" STREQUAL "")
         target_link_libraries(${UNIT_TEST_TARGET} ${ARG_LIBRARIES})
     endif()
+
+    #Run unit test as part of build
+    add_custom_command(TARGET ${UNIT_TEST_TARGET} POST_BUILD COMMAND $<TARGET_FILE:${UNIT_TEST_TARGET}>)
+
+    #Register unit test in ctests
+    add_test(NAME unittest_${UNIT_TEST_TARGET} COMMAND $<TARGET_FILE:${UNIT_TEST_TARGET}>)
 endmacro()
 ```
 
